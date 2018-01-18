@@ -175,13 +175,15 @@ public class MainActivity extends AppCompatActivity {
     private void initSelected() {
         SharedPreferences profile = this.getSharedPreferences("profile", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = profile.edit();
-
+		String setProfile = "echo ";
+		String pathProfile = "> /data/.power/profile";
         suResult = Shell.SU.run(String.format("getprop %s", profileProp));
 
         if (suResult != null) {
             String result = listToString(suResult);
 
             if (result.contains("0")) {
+                setProfile += "0 " + path;
                 CardView card0 = (CardView) findViewById(R.id.card0);
                 int balColor = ContextCompat.getColor(this, R.color.colorBalance);
                 card0.setCardBackgroundColor(balColor);
@@ -189,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("profile", "balanced");
                 editor.apply();
             } else if (result.contains("1")) {
+            	setProfile += "1 " + path;
                 CardView card1 = (CardView) findViewById(R.id.card1);
                 int perColor = ContextCompat.getColor(this, R.color.colorPerformance);
                 card1.setCardBackgroundColor(perColor);
@@ -196,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("profile", "performance");
                 editor.apply();
             } else if (result.contains("2")) {
+            	setProfile += "2 " + path;
                 CardView card2 = (CardView) findViewById(R.id.card2);
                 int batColor = ContextCompat.getColor(this, R.color.colorBattery);
                 card2.setCardBackgroundColor(batColor);
@@ -203,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("profile", "battery");
                 editor.apply();
             } else if (result.contains("3")) {
+            	setProfile += "3 " + path;
                 CardView card3 = (CardView) findViewById(R.id.card3);
                 int gamColor = ContextCompat.getColor(this, R.color.colorGaming);
                 card3.setCardBackgroundColor(gamColor);
@@ -214,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
             }
         }
+        Shell.SU.run(setProfile);
     }
 
     // Method that reads and sets profile descriptions
