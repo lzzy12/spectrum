@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
-            case PERMISSIONS_REQUEST: {
+            case PERMISSIONS_REQUEST:
                 if (grantResults.length > 0) {
                     for(int i = 0; i < grantResults.length; i++) {
                         String permission = permissions[i];
@@ -283,11 +283,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 break;
-            case default:
+             default:
                 break;
             }
         }
     }
 
-}
 
