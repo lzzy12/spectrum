@@ -54,24 +54,7 @@ public class MainActivity extends AppCompatActivity {
         final int perColor = ContextCompat.getColor(this, R.color.colorPerformance);
         final int batColor = ContextCompat.getColor(this, R.color.colorBattery);
         final int gamColor = ContextCompat.getColor(this, R.color.colorGaming);
-
-        // Check for Spectrum Support
-        if (!checkSupport(this)) {
-            new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.no_spectrum_support_dialog_title))
-                    .setMessage(getString(R.string.no_spectrum_support_dialog_message))
-                    .setCancelable(false)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            finish();
-                        }
-                    })
-                    .show();
-            return;
-        }
-
+        
         // Ensure root access
         if (!Utils.checkSU()) {
             new AlertDialog.Builder(this)
