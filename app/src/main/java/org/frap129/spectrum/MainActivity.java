@@ -34,12 +34,13 @@ import static org.frap129.spectrum.Utils.profileProp;
 import static org.frap129.spectrum.Utils.setProfile;
 
 public class MainActivity extends AppCompatActivity {
-
+    String setProfile = "echo ";
+    String pathProfile = " > /data/.power/profiles";
     private CardView oldCard;
     private List<String> suResult = null;
     private int notaneasteregg = 0;
     private static final int PERMISSIONS_REQUEST = 0;
-
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         final int perColor = ContextCompat.getColor(this, R.color.colorPerformance);
         final int batColor = ContextCompat.getColor(this, R.color.colorBattery);
         final int gamColor = ContextCompat.getColor(this, R.color.colorGaming);
-        
         // Ensure root access
         if (!Utils.checkSU()) {
             new AlertDialog.Builder(this)
@@ -110,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             cardClick(card0, 0, balColor);
+            setProfile += "1" + pathProfile;
+            Shell.SU.run(setProfile);
                 if (notaneasteregg == 1) {
                     notaneasteregg++;
                 } else {
@@ -122,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cardClick(card1, 1, perColor);
+                setProfile += "2" + pathProfile;
+                Shell.SU.run(setProfile);
                 if (notaneasteregg == 3) {
                     Intent intent = new Intent(MainActivity.this, ProfileLoaderActivity.class);
                     startActivity(intent);
@@ -136,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cardClick(card2, 2, batColor);
+                setProfile += "0" + pathProfile;
+                Shell.SU.run(setProfile);
                 if (notaneasteregg == 2) {
                     notaneasteregg++;
                 } else {
@@ -148,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cardClick(card3, 3, gamColor);
+                setProfile += "3" + pathProfile;
+                Shell.SU.run(setProfile);
                 notaneasteregg = 1;
             }
         });
